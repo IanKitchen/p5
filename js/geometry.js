@@ -2,42 +2,45 @@ function setup() {
   pixelDensity(3.0);
   createCanvas(800,800);
   background(0);
-  noFill();
-  stroke("red");
-  noLoop();
-
+  //noLoop();
 }
 
 function draw() {
 
-  for(box=100;box>80;box--){
-    rect(box, box, box+20, box+20);
-  }
+  //drawStack(80);
 
   if(keyIsPressed){
    drawDrop();
+  }
+
+  if(mouseIsPressed){
+    drawOval();
+  }
+}
+
+
+function drawStack(size){
+  stroke("red");
+  noFill();
+  for(var box = size; box>60; box--){
+    rect(box, box, box+20, box+20);
   }
 }
 
 
 function drawDrop(){
-  for(rad = 50; rad > 10; rad = rad-5){
+  stroke("blue");
+  fill(125);
+  for(var rad = 50; rad > 10; rad = rad-5){
     fill(rad*5+5);
     ellipse(mouseX, mouseY, rad, rad);
   }
 }
 
 function drawOval(){
-
-  if(mouseIsPressed){
-    fill(0);
-  }
-  else {
-    fill(255);
-  }
-
-  var width = abs(mouseX-250)*2;
-  var height = abs(mouseY-250)*2;
-
+  stroke("red");
+  noFill();
+  var width = abs(mouseX-400)*2;
+  var height = abs(mouseY-400)*2;
   ellipse(mouseX, mouseY, width, height);
 }
