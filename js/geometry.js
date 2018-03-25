@@ -1,7 +1,18 @@
+
+var cWidth;
+var cHeight;
+var canvas;
+var penColour;
+
 function setup() {
+
   pixelDensity(3.0);
-  createCanvas(800,800);
+  penColour = "red";
+  canvas = createCanvas(windowWidth,windowHeight-200);
+  canvas.parent('geometrySketch');
   background(0);
+  cWidth = canvas.width;
+  cHeight = canvas.height;
   //noLoop();
 }
 
@@ -17,6 +28,7 @@ function draw() {
     drawOval();
   }
 }
+
 
 
 function drawStack(size){
@@ -38,9 +50,13 @@ function drawDrop(){
 }
 
 function drawOval(){
-  stroke("red");
-  noFill();
-  var width = abs(mouseX-400)*2;
-  var height = abs(mouseY-400)*2;
-  ellipse(mouseX, mouseY, width, height);
+  //var pos = canvas.position();
+  if ( mouseY > cHeight*0.25 && mouseY < cHeight*0.75 && mouseX > cWidth*0.25 && mouseX < cWidth*0.75)
+  {
+    stroke(penColour);
+    noFill();
+    var width = abs(mouseX-cWidth/2)*2;
+    var height = abs(mouseY-cHeight/2)*2;
+    ellipse(mouseX, mouseY, width, height);
+  }
 }

@@ -1,0 +1,28 @@
+//used for each button in the top right list
+@background:#f3f3f3;
+@headerText:#444;
+
+@button-normal: #F7EA5C;
+@button-hover: (@button-normal - #555);
+@button-click: (@button-normal + #333);
+
+body {padding: 0; margin: 0;}
+
+li.styleButton
+{
+	display:inline;
+	float:right;
+	padding:10px;
+	font-family:sans-serif;
+	list-style: none;
+	color:@headerText;
+
+}
+
+
+//could be used to change style on hover, currently just for pointer
+li.styleButton:hover
+{
+	background-color: @background;
+	cursor:pointer;
+}
