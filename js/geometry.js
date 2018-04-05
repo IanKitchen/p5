@@ -22,13 +22,13 @@ function draw() {
 
   //drawStack(80);
 
-  if(keyIsPressed){
-   drawDrop();
-  }
-
-  //if(mouseIsPressed){
-  //  drawOval();
+  //if(keyIsPressed){
+  // drawDrop();
   //}
+
+  if(mouseIsPressed){
+    drawOval();
+  }
 }
 
 
