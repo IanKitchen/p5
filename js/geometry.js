@@ -3,11 +3,13 @@ var cWidth;
 var cHeight;
 var canvas;
 var penColour;
+var fillColour;
 
 function setup() {
 
   pixelDensity(3.0);
   penColour = "red";
+  fillColour = color('rgba(1, 0, 0, 0.1)');
   canvas = createCanvas(windowWidth,windowHeight-200);
   canvas.parent('geometrySketch');
   background(0);
@@ -24,9 +26,9 @@ function draw() {
    drawDrop();
   }
 
-  if(mouseIsPressed){
-    drawOval();
-  }
+  //if(mouseIsPressed){
+  //  drawOval();
+  //}
 }
 
 
@@ -51,6 +53,13 @@ function drawDrop(){
 
 function drawOval(){
   //var pos = canvas.position();
+  if(mouseIsPressed){
+    fill(fillColour);
+  }
+  else {
+    noFill();
+  }
+
   if ( mouseY > cHeight*0.25 && mouseY < cHeight*0.75 && mouseX > cWidth*0.25 && mouseX < cWidth*0.75)
   {
     stroke(penColour);
