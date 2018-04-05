@@ -9,7 +9,7 @@ function setup() {
 
   pixelDensity(3.0);
   penColour = "red";
-  fillColour = color('rgba(1, 1, 0, 1)');
+  fillColour = color('rgba(1, 0, 0, 0.1)');
   canvas = createCanvas(windowWidth,windowHeight-200);
   canvas.parent('geometrySketch');
   background(0);
@@ -63,7 +63,7 @@ function drawOval(){
   if ( mouseY > cHeight*0.25 && mouseY < cHeight*0.75 && mouseX > cWidth*0.25 && mouseX < cWidth*0.75)
   {
     stroke(penColour);
-    noFill();
+    //noFill();
     var width = abs(mouseX-cWidth/2)*2;
     var height = abs(mouseY-cHeight/2)*2;
     ellipse(mouseX, mouseY, width, height);
