@@ -9,8 +9,8 @@ function setup() {
 
   pixelDensity(3.0);
   penColour = "red";
-  fillColour = color('rgba(1, 0, 0, 0.1)');
-  canvas = createCanvas(windowWidth,windowHeight-200);
+  fillColour = color('rgba(255, 0, 0, 0.1)');
+  canvas = createCanvas(windowWidth,windowHeight-200, "WEBGL");
   canvas.parent('geometrySketch');
   background(0);
   cWidth = canvas.width;
