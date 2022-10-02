@@ -7,7 +7,8 @@ https://github.com/processing/p5.js/wiki/Local-server
 
 Basically open a terminal window the folder where your p5 html file is
 
-Run python -m SimpleHTTPServer
+Run 
+python -m SimpleHTTPServer
 
 In a browser go to for example
 
