@@ -15,3 +15,7 @@ In a browser go to for example
 http://localhost:8000/geometry.html
 
 ctrl z to step the server
+
+OR use the liver server extension in VS Code as described here
+https://github.com/processing/p5.js/wiki/Local-server
+

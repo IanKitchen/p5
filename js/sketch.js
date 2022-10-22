@@ -1,17 +1,24 @@
+//Simple canvas stuff
+
 function setup() {
   pixelDensity(3.0);
-  createCanvas(500,500);
-  background(0);
-  noStroke();
-
+  createCanvas(1200,500);
+  background(125);
+  fill(180);
+  stroke(50);
+  strokeWeight(4);
 }
 
 function draw() {
 
+  let coord = {
+    x: 100,
+    y: 100
+  };
 
-  if(keyIsPressed){
-   drawDrop();
-  }
+  //draw some art!
+  drawSquares();
+  drawTriangle(coord);
 }
 
 
@@ -22,8 +29,8 @@ function drawDrop(){
   }
 }
 
-function drawOval(){
-
+function drawAtMouse()
+{  
   if(mouseIsPressed){
     fill(0);
   }
@@ -34,5 +41,15 @@ function drawOval(){
   var width = abs(mouseX-250)*2;
   var height = abs(mouseY-250)*2;
 
-  ellipse(mouseX, mouseY, width, height);
+  // ellipse(mouseX, mouseY, width, height);}
+}
+
+function drawSquares(){
+  rect(20, 20, 60, 60);
+}
+
+
+
+function drawTriangle(coord1){
+  triangle(coord1.x,coord1.y,coord1.x+100,coord1.y,coord1.x,coord1.y+100);
 }
