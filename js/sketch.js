@@ -2,11 +2,15 @@
 
 function setup() {
   pixelDensity(3.0);
-  createCanvas(1200,500);
+  createCanvas(1200,700);
   background(125);
   fill(180);
   stroke(50);
   strokeWeight(4);
+  frameRate(1);
+  noLoop();
+  noiseSeed(99);
+  colorMode(HSB,16,16,16);
 }
 
 function draw() {
@@ -17,8 +21,17 @@ function draw() {
   };
 
   //draw some art!
-  drawSquares();
-  drawTriangle(coord);
+  //drawSquare();
+  //drawTriangle(coord);
+
+  for(let x=5;x<16;x++)
+  {
+    coord.x = coord.x+5*x;
+    //coord.y = coord.y+random(5)*x;
+    coord.y += noise(x)*5*x
+    fill(x,x,x)
+    drawTriangle(coord)
+  }
 }
 
 
@@ -44,7 +57,7 @@ function drawAtMouse()
   // ellipse(mouseX, mouseY, width, height);}
 }
 
-function drawSquares(){
+function drawSquare(){
   rect(20, 20, 60, 60);
 }
 
