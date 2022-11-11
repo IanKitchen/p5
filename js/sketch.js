@@ -27,9 +27,10 @@ function setupB()
 
 function draw() {
 
-  fallingTriangles();
-  
-  // saveCanvas('myCanvas', 'png');
+  //fallingTriangles();
+  gridLines();
+
+  saveCanvas('myCanvas', 'png');
 }
 
 function fallingTriangles(){
@@ -46,6 +47,21 @@ function fallingTriangles(){
     coord.y += noise(i)*5*i
     fill(i,i,i)
     drawTriangle(coord)
+  }
+}
+
+function gridLines(){
+  strokeWeight(9);
+  stroke(99);
+  noFill();
+
+  for(let i = 1; i<width/120; i++){
+    for(let j = 1; j<height/120; j++){
+      print(i +' and '+ j);
+      stroke(50);
+      fill(i*2,j*3,i+j)
+      rect(i*105,j*80+noise(i)*100,105,105);
+    }
   }
 }
 
