@@ -67,11 +67,12 @@ function gridLines(){
   noFill();
 
   for(let i = 1; i<width/120; i++){
-    for(let j = 1; j<height/120; j++){
+    //for(let j = 1; j<height/120; j++){
+    for(let j = height/120; j>1; j--){
       print(i +' and '+ j);
       stroke(50);
-      fill(i*2,j*3,i+j)
-      rect(i*105,j*80+noise(i)*100,105,105);
+      fill(i*2,j*3,i+j,0.5)
+      rect(i*105,j*80+noise(i)*100-55,105,105+noise(i+j)*50);
     }
   }
 
