@@ -50,6 +50,17 @@ function fallingTriangles(){
   }
 }
 
+function SkewRect (x,y){
+  this.pointX1 = x;
+  this.pointY1 = y;
+  this.pointX2 = x+random(50);
+  this.pointY2 = y+random(50);
+  this.report = function(){
+    print(pointX1 + " / " + pointY1 + " / " + pointX2 + " / " + pointY2)
+  }
+
+}
+
 function gridLines(){
   strokeWeight(9);
   stroke(99);
@@ -63,6 +74,12 @@ function gridLines(){
       rect(i*105,j*80+noise(i)*100,105,105);
     }
   }
+
+  shape1 = new SkewRect(100,100);
+  shape2 = new SkewRect(100,100);
+
+  shape1.report();
+  shape2.report();
 }
 
 function drawTriangle(coord1){
