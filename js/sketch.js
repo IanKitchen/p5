@@ -30,7 +30,7 @@ function draw() {
   //fallingTriangles();
   gridLines();
 
-  saveCanvas('myCanvas', 'png');
+  saveCanvas('myCanvas3', 'png');
 }
 
 function fallingTriangles(){
@@ -56,7 +56,7 @@ function SkewRect (x,y){
   this.pointX2 = x+random(50);
   this.pointY2 = y+random(50);
   this.report = function(){
-    print(pointX1 + " / " + pointY1 + " / " + pointX2 + " / " + pointY2)
+    print(this.pointX1 + " / " + this.pointY1 + " / " + this.pointX2 + " / " + this.pointY2);
   }
 
 }
@@ -77,10 +77,10 @@ function gridLines(){
   }
 
   shape1 = new SkewRect(100,100);
-  shape2 = new SkewRect(100,100);
+  //shape2 = new SkewRect(100,100);
 
   shape1.report();
-  shape2.report();
+  //shape2.report();
 }
 
 function drawTriangle(coord1){
