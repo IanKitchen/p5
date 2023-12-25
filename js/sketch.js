@@ -3,35 +3,82 @@
 function setup() {
   pixelDensity(3.0);
   createCanvas(1050,700);
-  // setupA();
-  setupB();
+  setupGraphicsB();
   frameRate(1);
   noLoop();
-  
-  colorMode(HSB,16,16,16);
 }
 
-function setupA()
+function setupGraphicsA()
 {
   background(125);
   strokeWeight(4);
   noiseSeed(99);
+  colorMode(HSB,16,16,16);   //for each range of values is 0 to 16
 }
 
-function setupB()
+function setupGraphicsB()
 {
   background(245);
   strokeWeight(4);
-  noiseSeed(109);
+  noiseSeed(10);
+  colorMode(HSB,16,16,16);   //for each range of values is 0 to 16
 }
 
 function draw() {
 
-  //fallingTriangles();
   gridLines();
 
-  saveCanvas('myCanvas3', 'png');
+  //saveCanvas('myCanvas3', 'png');
 }
+
+class skewRect {
+  constructor(x, y) {
+    this.pointX1 = x;
+    this.pointY1 = y;
+    this.pointX2 = x + noise(50)*50;
+    this.pointY2 = y + noise(50)+50;
+    this.report = function () {
+      print(this.pointX1 + " / " + this.pointY1 + " / " + this.pointX2 + " / " + this.pointY2);
+    };
+  }
+
+  drawSkew() {
+    quad( this.pointX1, this.pointY1, 
+          this.pointX1 + 100, this.pointY1,
+          this.pointX2, this.pointY2, 
+          this.pointX2 - 100, this.pointY2 )
+  }
+}
+
+function gridLines(){
+  strokeWeight(9);
+  stroke(16); //white
+  noFill();
+  let l =0; 
+  let w = 0;
+  let t = 0;
+  let h = 0;
+
+  for(let i = 1; i<width/120; i++){
+    for(let j = height/120; j>1; j--){
+      print(i +' and '+ j);
+      fill(i*2,j*3,i+j,0.5) //HSB Hue per column from 2 to 16, Sat increases towards botton left of 13.8
+
+      l = i*105;
+      w = 105;
+      t = j*80+noise(i)*100-55 //inner loop times 2/3 of size + 100 times noise minus 55
+      h = 105+noise(i+j)*50 //at least 105 plus noise times 50
+      rect(l,t,w,h);
+    }
+  }
+
+  shape1 = new skewRect(500,500);
+  shape1.drawSkew();
+
+  shape1.report();
+}
+
+//-------------------------------------
 
 function fallingTriangles(){
   let coord = {
@@ -48,39 +95,6 @@ function fallingTriangles(){
     fill(i,i,i)
     drawTriangle(coord)
   }
-}
-
-function SkewRect (x,y){
-  this.pointX1 = x;
-  this.pointY1 = y;
-  this.pointX2 = x+random(50);
-  this.pointY2 = y+random(50);
-  this.report = function(){
-    print(this.pointX1 + " / " + this.pointY1 + " / " + this.pointX2 + " / " + this.pointY2);
-  }
-
-}
-
-function gridLines(){
-  strokeWeight(9);
-  stroke(99);
-  noFill();
-
-  for(let i = 1; i<width/120; i++){
-    //for(let j = 1; j<height/120; j++){
-    for(let j = height/120; j>1; j--){
-      print(i +' and '+ j);
-      stroke(50);
-      fill(i*2,j*3,i+j,0.5)
-      rect(i*105,j*80+noise(i)*100-55,105,105+noise(i+j)*50);
-    }
-  }
-
-  shape1 = new SkewRect(100,100);
-  //shape2 = new SkewRect(100,100);
-
-  shape1.report();
-  //shape2.report();
 }
 
 function drawTriangle(coord1){
