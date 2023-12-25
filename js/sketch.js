@@ -3,24 +3,16 @@
 function setup() {
   pixelDensity(3.0);
   createCanvas(1050,700);   //8 columns plus 2 margins of 105 each, 6 rows of 
-  setupGraphicsB();
+  setupGraphics();
   frameRate(1);
   noLoop();
 }
 
-function setupGraphicsA()
-{
-  background(125);
-  strokeWeight(4);
-  noiseSeed(99);
-  colorMode(HSB,16,16,16);   //for each range of values is 0 to 16
-}
-
-function setupGraphicsB()
+function setupGraphics()
 {
   colorMode(HSB,16,16,16); //for each range of values is 0 to 16
   background(15);
-  strokeWeight(16); //this draws inside the shape
+  strokeWeight(4); //this draws centred on the extent of the shape
   stroke(16); //white
   noiseSeed(10);
 }
@@ -31,10 +23,6 @@ function draw() {
 }
 
 function gridLines(){
-  // let l =0; 
-  // let w = 0;
-  // let t = 0;
-  // let h = 0;
 
   var l,w,t,h;
 
@@ -45,8 +33,8 @@ function gridLines(){
 
       l = i*105;
       w = 105;
-      t = j*80+noise(i/100)*120-20 //top is inner loop times 80 plus outer loop noise
-      h = 80+noise(i+j)*80 //height between 80 and 160
+      t = j*80+noise(i/2)*120-20 //top is inner loop times 80 plus outer loop noise
+      h = 80+noise(i+j)*80 //height is between 80 and 160
       rect(l,t,w,h);
 
       print( 'left: ' + l + 'width: ' + w + 'top: ' + t + 'height: ' + h);
