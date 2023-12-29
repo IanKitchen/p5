@@ -2,7 +2,8 @@
 
 function setup() {
   pixelDensity(3.0);
-  createCanvas(1050,700);   //8 columns plus 2 margins of 105 each, 6 rows of 
+  //createCanvas(1050,700);   //8 columns plus 2 margins of 105 each, 6 rows of for 3x2 card
+  createCanvas(1050,742);   //A4, 297mm by 210mm rescalled to 1050px wide
   setupGraphics();
   frameRate(1);
   noLoop();
@@ -18,7 +19,8 @@ function setupGraphics()
 }
 
 function draw() {
-  gridLines();
+  //gridLines();
+  pyramid();
   //saveCanvas('myCanvas3', 'png');
 }
 
@@ -39,33 +41,6 @@ function gridLines(){
 
       print( 'left: ' + l + 'width: ' + w + 'top: ' + t + 'height: ' + h);
     }
-  }
-}
-
-//-------------------------------------
-
-function skewShapes(){
-  shape1 = new skewRect(500,500);
-  shape1.drawSkew();
-  shape1.report();
-}
-
-class skewRect {
-  constructor(x, y) {
-    this.pointX1 = x;
-    this.pointY1 = y;
-    this.pointX2 = x + noise(50)*50;
-    this.pointY2 = y + noise(50)+50;
-    this.report = function () {
-      print(this.pointX1 + " / " + this.pointY1 + " / " + this.pointX2 + " / " + this.pointY2);
-    };
-  }
-
-  drawSkew() {
-    quad( this.pointX1, this.pointY1, 
-          this.pointX1 + 100, this.pointY1,
-          this.pointX2, this.pointY2, 
-          this.pointX2 - 100, this.pointY2 )
   }
 }
 
