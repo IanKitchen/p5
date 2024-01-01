@@ -14,15 +14,17 @@ function setupGraphics()
   colorMode(HSB,16,16,16); //for each range of values is 0 to 16
   background(15);
   strokeWeight(4); //this draws centred on the extent of the shape
-  stroke(16); //white
+  stroke(8); //white
   noiseSeed(10);
 }
 
 function draw() {
   //gridLines();
-  pyramid();
+  drawPyramids();
   //saveCanvas('myCanvas3', 'png');
 }
+
+//-------------------------------------
 
 function gridLines(){
 
@@ -44,7 +46,7 @@ function gridLines(){
   }
 }
 
-//-------------------------------------
+
 
 function fallingTriangles(){
   let coord = {

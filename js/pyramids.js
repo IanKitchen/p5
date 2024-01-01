@@ -1,7 +1,9 @@
 
 
-function pyramid(){
+function drawPyramids(){
     var l,w,t,h;
+
+    strokeWeight(0)
 
     for(let i = 1; i<=8; i++){
         for(let j = 1; j<=6; j++){
@@ -18,33 +20,43 @@ function pyramid(){
         }
     }
 
-    skewShapes();
+    doPyramid();
 }
 
 //-------------------------------------
 
-function skewShapes(){
-    shape1 = new skewRect(500,500);
-    shape1.drawSkew();
+function doPyramid(){
+    shape1 = new pyramid(100,100,100);
+    shape1.drawPyramid();
     shape1.report();
 }
   
-class skewRect {
-    constructor(x, y) {
+class pyramid {
+    constructor(x, y, l) {
       this.pointX1 = x;
       this.pointY1 = y;
-      this.pointX2 = x + noise(50)*50;
-      this.pointY2 = y + noise(50)+50;
+      this.pointX2 = x + l;
+      this.pointY2 = y;
+      this.pointX3 = x;
+      this.pointY3 = y+l;
+      this.pointX4 = x + l;
+      this.pointY4 = y + l;
+      this.pointX = x + l/2 + noise(x)*5;
+      this.pointY = y + l/2 + noise(y)*5;
       this.report = function () {
         print(this.pointX1 + " / " + this.pointY1 + " / " + this.pointX2 + " / " + this.pointY2);
       };
     }
   
-    drawSkew() {
-      quad( this.pointX1, this.pointY1, 
-            this.pointX1 + 100, this.pointY1,
-            this.pointX2, this.pointY2, 
-            this.pointX2 - 100, this.pointY2 )
+    drawPyramid() {
+        fill(11);
+        triangle(this.pointX1,this.pointY1, this.pointX2, this.pointY2, this.pointX, this.pointY); //top
+        fill(10);
+        triangle(this.pointX1,this.pointY1, this.pointX3, this.pointY3, this.pointX, this.pointY); //left
+        fill(9);
+        triangle(this.pointX4,this.pointY4, this.pointX2, this.pointY2, this.pointX, this.pointY); //right
+        fill(8);
+        triangle(this.pointX4,this.pointY4, this.pointX3, this.pointY3, this.pointX, this.pointY); //bottom
     }
 }
   
