@@ -9,6 +9,17 @@ function setup() {
   noLoop();
 }
 
+var drawFrame = 1;
+var saved = false;
+
+function mouseClicked() {
+  drawFrame++;
+  saved = false;
+  fill(5,5,5);
+  rect(mouseX,mouseY,drawFrame*10,40);
+  drawPyramids();
+}
+
 function setupGraphics()
 {
   colorMode(HSB,16,16,16); //for each range of values is 0 to 16

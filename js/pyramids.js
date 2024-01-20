@@ -2,6 +2,7 @@
 
 function drawPyramids(){
     var x,y,d;
+    var outputMode = false;
 
     strokeWeight(0)
 
@@ -9,6 +10,11 @@ function drawPyramids(){
 
     for(let i = 1; i<=9; i++){
         for(let j = 1; j<=6; j++){
+            if(outputMode){   //erase all drawing
+                fill(16);
+                rect(0,0,1050,742);
+            }
+
             print(i + ' and ' + j);
             let hue = i*1.77; //1.77 to 16
             let sat = j*2.5-2.5; //0 to 12.5
@@ -21,21 +27,18 @@ function drawPyramids(){
 
             doPyramid(x,y,d);
 
-            if ((i-1)*6+j==54){
+            if ((i-1)*6+j==drawFrame && outputMode && !saved){  //0 to 54
                 saveCanvas('pyramid' + i + j, 'png');
+                saved = true;
+                return;
             }
-
-            if(false){
-                fill(16);
-                rect(0,0,1050,742);
-            }
-
+ 
             print( 'x: ' + x + 'y: ' + y + 'd: ' + d);
         } 
-    }
-
-    
+    }    
 }
+
+
 
 //-------------------------------------
 
@@ -55,8 +58,8 @@ class pyramid {
       this.pointY3 = y+l;
       this.pointX4 = x + l;
       this.pointY4 = y + l;
-      this.pointX = x + l/2 + noise(x)*25;
-      this.pointY = y + l/2 + noise(y)*25;
+      this.pointX = x + l/2 + noise(x)*25-12;
+      this.pointY = y + l/2 + noise(y)*25-12;
       this.report = function () {
         print(this.pointX1 + " / " + this.pointY1 + " / " + this.pointX2 + " / " + this.pointY2);
       };
