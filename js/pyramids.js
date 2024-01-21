@@ -36,6 +36,8 @@ function drawPyramids(){
             print( 'x: ' + x + 'y: ' + y + 'd: ' + d);
         } 
     }    
+    
+    saveCanvas('pyramid', 'png');
 }
 
 
@@ -50,17 +52,18 @@ function doPyramid(x,y,d){
   
 class pyramid {
     constructor(x, y, l) {
-      this.pointX1 = x;
-      this.pointY1 = y;
-      this.pointX2 = x + l;
-      this.pointY2 = y;
-      this.pointX3 = x;
-      this.pointY3 = y+l;
-      this.pointX4 = x + l;
-      this.pointY4 = y + l;
-      this.pointX = x + l/2 + noise(x)*25-12;
-      this.pointY = y + l/2 + noise(y)*25-12;
-      this.report = function () {
+        let gap=1;
+        this.pointX1 = x+gap;
+        this.pointY1 = y+gap;
+        this.pointX2 = x + l - gap;
+        this.pointY2 = y + gap;
+        this.pointX3 = x + gap;
+        this.pointY3 = y+l - gap;
+        this.pointX4 = x + l - gap;
+        this.pointY4 = y + l - gap;
+        this.pointX = x + l/2 + noise(x)*25-12;
+        this.pointY = y + l/2 + noise(y)*25-12;
+        this.report = function () {
         print(this.pointX1 + " / " + this.pointY1 + " / " + this.pointX2 + " / " + this.pointY2);
       };
     }
