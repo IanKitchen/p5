@@ -1,10 +1,40 @@
 
 
-function drawPyramids(){
+function drawLines(){
     var x,y,d;
     var outputMode = false;
 
     strokeWeight(0)
+
+    //9 columns, 6 rows
+
+    for(let i = 1; i<=10; i++){
+        for(let j = 1; j<=7; j++){ 
+            let hue = j*2; //1.77 to 16
+            let sat = j*2.5-2.5; //0 to 12.5
+            let lightness = (i+j)*0.9; //2 to 15
+            fill(hue,16,14,1) 
+
+            x = i*95+3;
+            y = j*95-9;
+            d = 95;
+
+            rect(0, y-3, 1050, 6);
+            rect(x-3, y, 6, 742);
+        }
+    }
+}
+
+
+
+function drawPyramids(){
+    var x,y,d;
+    var topColor, leftColor, rightColor, bottomColor;
+    var outputMode = false;
+
+    strokeWeight(0)
+
+    //drawLines();
 
     //9 columns, 6 rows
 
@@ -16,17 +46,22 @@ function drawPyramids(){
             }
 
             print(i + ' and ' + j);
-            let hue = i*1.77; //1.77 to 16
-            let sat = j*2.5-2.5; //0 to 12.5
-            let lightness = (i+j)*0.9; //2 to 15
-            fill(hue,sat,lightness,1) 
+            let hue = i+5; //1.77 to 16
+            let sat = j*2+3; //3 to 15.5
+            let lightness = (i+j)/2+5; //2 to 15
+
+            topColor = color(hue, sat, lightness, 1);
+            leftColor = color(i,10,10,1); //red
+            rightColor = color(j,10,10,1); //blue
+            bottomColor = color((i+j)/2,7,5,1); //green
     
             x = i*95+3;
             y = j*95-9;
             d = 95;
 
-            doPyramid(x,y,d);
+            doPyramid(x,y,d,topColor, leftColor, rightColor, bottomColor);
 
+            //when in outputMode output a png of each pyramid on each click
             if ((i-1)*6+j==drawFrame && outputMode && !saved){  //0 to 54
                 saveCanvas('pyramid' + i + j, 'png');
                 saved = true;
@@ -37,22 +72,26 @@ function drawPyramids(){
         } 
     }    
     
-    saveCanvas('pyramid', 'png');
+    //saveCanvas('pyramid', 'png');
 }
 
 
 
 //-------------------------------------
 
-function doPyramid(x,y,d){
-    shape1 = new pyramid(x,y,d);
+function doPyramid(x,y,d,topColor, leftColor, rightColor, bottomColor){
+    shape1 = new pyramid(x,y,d,topColor,leftColor,rightColor,bottomColor);
     shape1.drawPyramid();
     shape1.report();
 }
   
 class pyramid {
-    constructor(x, y, l) {
-        let gap=1;
+    constructor(x, y, l, topColor, leftColor, rightColor, bottomColor) {
+        let gap=0;
+        this.topColor = topColor;
+        this.leftColor = leftColor;
+        this.rightColor = rightColor;
+        this.bottomColor = bottomColor;
         this.pointX1 = x+gap;
         this.pointY1 = y+gap;
         this.pointX2 = x + l - gap;
@@ -69,13 +108,14 @@ class pyramid {
     }
   
     drawPyramid() {
-        triangle(this.pointX1,this.pointY1, this.pointX2, this.pointY2, this.pointX, this.pointY); //top
-        fill(0,10,10,1); //fill(5,5,5,1);
-        triangle(this.pointX1,this.pointY1, this.pointX3, this.pointY3, this.pointX, this.pointY); //left
-        fill(10,10,10,1);
-        triangle(this.pointX4,this.pointY4, this.pointX2, this.pointY2, this.pointX, this.pointY); //right
-        fill(7,7,5,1);
-        triangle(this.pointX4,this.pointY4, this.pointX3, this.pointY3, this.pointX, this.pointY); //bottom
+        fill(this.topColor);
+        triangle(this.pointX1,this.pointY1, this.pointX2, this.pointY2, this.pointX, this.pointY);
+        fill(this.leftColor);
+        triangle(this.pointX1,this.pointY1, this.pointX3, this.pointY3, this.pointX, this.pointY); 
+        fill(this.rightColor);
+        triangle(this.pointX4,this.pointY4, this.pointX2, this.pointY2, this.pointX, this.pointY); 
+        fill(this.bottomColor);
+        triangle(this.pointX4,this.pointY4, this.pointX3, this.pointY3, this.pointX, this.pointY); 
     }
 }
   
