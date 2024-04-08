@@ -46,14 +46,18 @@ function drawPyramids(){
             }
 
             print(i + ' and ' + j);
-            let hue = i+5; //1.77 to 16
-            let sat = j*2+3; //3 to 15.5
-            let lightness = (i+j)/2+5; //2 to 15
+
+            let hue = 2*(j); //1.77 to 16
+            let sat = j+3; //3 to 15.5
+            let lightness = (6+j)/2+5; //2 to 15
 
             topColor = color(hue, sat, lightness, 1);
-            leftColor = color(i,10,10,1); //red
-            rightColor = color(j,10,10,1); //blue
-            bottomColor = color((i+j)/2,7,5,1); //green
+
+            //if (j=6) {topColor = color(3,3,3,1);}
+
+            leftColor = color((i+8)/2,7,10,1); //red
+            rightColor = color((j+4)/1.5,10,10,1); //blue
+            bottomColor = color((i+j)/2,7,5+j,1); //green
     
             x = i*95+3;
             y = j*95-9;
