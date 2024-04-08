@@ -58,8 +58,18 @@ function drawPyramids(){
             lightness = 16 - (i+j-2); 
 
             leftColor = color(hue, sat, lightness, 1);
-            rightColor = color((j+4)/1.5,10,10,1); //blue
-            bottomColor = color((i+j)/2,7,5+j,1); //green
+
+            hue = 9-i+j;
+            sat = 9-i+j;
+            lightness = 9-i+j; 
+
+            rightColor = color(hue, sat, lightness, 1);
+
+            hue = 6+i-j;
+            sat = 6+i-j;
+            lightness = 6+i-j;
+
+            bottomColor = color(hue, sat, lightness, 1);
     
             x = i*95+3;
             y = j*95-9;
